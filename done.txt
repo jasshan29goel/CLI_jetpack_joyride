@@ -1,27 +1,6 @@
--> speed of the game will increase on taking the power up
-
-Score 
--> (time lives and coins)
--> display on top
 
 
 
-magnet
--> attracts the person
-
-
-boss
--> end
--> throw ice balls
--> character must dodge
--> gets hit by bullets
 
 
 
-character magnet
-character boss
-character snow ball
-
-bullet magnet
-bullet boss
-bullet snowball

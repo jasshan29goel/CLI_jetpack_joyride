@@ -6,6 +6,7 @@ class bullet:
         self.name='bullet'
     def vanish(self):
         self.position = np.array([[0,0],[0,0]])
+        self.symbol = np.array([' ',' '])
         return  
     def write(self):
         self.position[:,1]=self.position[:,1]+2
