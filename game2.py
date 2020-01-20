@@ -64,95 +64,95 @@ class Board:
         return ''
 
     def collisionDetect(self,ele1,ele2):
-        if ele1.name=='character' and ele2.name=='beam' and ele1.shield==0:
+        if ele1.name()=='character' and ele2.name()=='beam' and ele1.shield()==0:
             self.removeObject(ele1)
-            ele1.lives-=1
+            ele1.setlives(-1)
             ele1.restore()
-            if(ele1.lives<=0):
+            if(ele1.lives()<=0):
                 self.quitX()
-        if ele1.name=='beam' and ele2.name=='character' and ele2.shield==0:
+        if ele1.name()=='beam' and ele2.name()=='character' and ele2.shield()==0:
             self.removeObject(ele2)
-            ele2.lives-=1
+            ele2.setlives(-1)
             ele2.restore()
-            if(ele2.lives<=0):
+            if(ele2.lives()<=0):
                 self.quitX()
-        if ele1.name=='character' and ele2.name=='coin':
+        if ele1.name()=='character' and ele2.name()=='coin':
             self.removeObject(ele2)
             ele2.vanish()
-            ele1.score+=10
-        if ele1.name=='coin' and ele2.name=='character':
+            ele1.setscore(10)
+        if ele1.name()=='coin' and ele2.name()=='character':
             self.removeObject(ele1)
             ele1.vanish()
-            ele2.score+=10
-        if ele1.name=='bullet' and ele2.name=='beam':
-            self.removeObject(ele1)
-            ele1.vanish()
-            self.removeObject(ele2)
-            ele2.vanish()
-        if ele1.name=='beam' and ele2.name=='bullet':
+            ele2.setscore(10)
+        if ele1.name()=='bullet' and ele2.name()=='beam':
             self.removeObject(ele1)
             ele1.vanish()
             self.removeObject(ele2)
             ele2.vanish()
-        if ele1.name=='bullet' and ele2.name=='enemy':
+        if ele1.name()=='beam' and ele2.name()=='bullet':
             self.removeObject(ele1)
-            if (ele1.position[0][0]-10 == ele2.position[0][0] or ele1.position[0][0]-11 == ele2.position[0][0]) and ele2.defense==0:
-                ele2.lives-=1
-                ele2.defense=1
-                if ele2.lives<=0 :
+            ele1.vanish()
+            self.removeObject(ele2)
+            ele2.vanish()
+        if ele1.name()=='bullet' and ele2.name()=='enemy':
+            self.removeObject(ele1)
+            if (ele1.position00()-10 == ele2.position00() or ele1.position00()-11 == ele2.position00()) and ele2.defense()==0:
+                ele2.setlives(-1)
+                ele2.setdefense(1)
+                if ele2.lives()<=0 :
                     self.quitX()
             ele1.vanish()
-        if ele1.name=='enemy' and ele2.name=='bullet':
+        if ele1.name()=='enemy' and ele2.name()=='bullet':
             self.removeObject(ele2)
-            if (ele2.position[0][0]-10 == ele1.position[0][0] or ele2.position[0][0]-11 == ele1.position[0][0])and ele1.defense==0:
-                ele1.lives-=1
-                ele1.defense=1
-                if ele1.lives<=0 :
+            if (ele2.position00()-10 == ele1.position00() or ele2.position00()-11 == ele1.position00())and ele1.defense()==0:
+                ele1.setlives(-1)
+                ele1.setdefense(1)
+                if ele1.lives()<=0 :
                     self.quitX()
             ele2.vanish()
-        if ele1.name=='character' and ele2.name=='snowBall'  and ele1.shield==0:
+        if ele1.name()=='character' and ele2.name()=='snowBall'  and ele1.shield()==0:
             self.removeObject(ele2)
             ele2.vanish()
             self.removeObject(ele1)
-            ele1.lives-=1
+            ele1.setlives(-1)
             ele1.restore()
-            if(ele1.lives<=0):
+            if(ele1.lives()<=0):
                 self.quitX()
-        if ele1.name=='snowBall' and ele2.name=='character' and ele2.shield==0:
+        if ele1.name()=='snowBall' and ele2.name()=='character' and ele2.shield()==0:
             self.removeObject(ele1)
             ele1.vanish()
             self.removeObject(ele2)
-            ele2.lives-=1
+            ele2.setlives(-1)
             ele2.restore()
-            if(ele2.lives<=0):
+            if(ele2.lives()<=0):
                 self.quitX()
-        if ele1.name=='bullet' and ele2.name=='snowBall' :
+        if ele1.name()=='bullet' and ele2.name()=='snowBall' :
             self.removeObject(ele1)
             ele1.vanish()
             self.removeObject(ele2)
             ele2.vanish()            
-        if ele1.name=='snowBall' and ele2.name=='bullet' :
+        if ele1.name()=='snowBall' and ele2.name()=='bullet' :
             self.removeObject(ele1)
             ele1.vanish()
             self.removeObject(ele2)
             ele2.vanish()
-        if ele1.name=='character' and ele2.name=='enemy':
+        if ele1.name()=='character' and ele2.name()=='enemy':
             self.quitX()
-        if ele1.name=='enemy' and ele2.name=='character':
+        if ele1.name()=='enemy' and ele2.name()=='character':
             self.quitX()
 
         return
 
     def quitX(self):
-        if self.en.lives==0:
+        if self.en.lives()==0:
             print("You win Congrats")
-            print("lives remaining: ",self.charac.lives)
+            print("lives remaining: ",self.charac.lives())
             print("time remaining: ",self.timeLeft)
-            print("score: ",self.charac.score+self.timeLeft*5 + 10*self.charac.lives)
+            print("score: ",self.charac.score()+self.timeLeft*2 + 10*self.charac.lives())
 
         else:
             print("You lost")
-            print("Boss lives left: ",self.en.lives)
+            print("Boss lives left: ",self.en.lives())
         quit()
 
     def detectKey(self,character):
@@ -174,11 +174,11 @@ class Board:
             self.writeObject(character,character)
 
         if char == 'b':
-            temp_bullet=bullet(character.position[5][0],character.position[5][1])
+            temp_bullet=bullet(character.position50(),character.position51())
             self.bullets.append(temp_bullet)
             self.writeObject(temp_bullet,character)
-            character.score-=1
-        if char == ' ' and time.time()-character.lastTime > 70:
+            character.setscore(-1)
+        if char == ' ' and time.time()-character.lastTime() > 70:
             character.activateShield(time.time())
         if char == 'p' and self.speed[2]==0:
             self.speed=[0.025,time.time(),1]
@@ -188,22 +188,23 @@ class Board:
             self.quitX()
 	
     def writeObject(self,ele,character):
-        for i in ele.position:
+        for i in ele.position():
             if i[0] >=1 and i[1] >=1 and i[0]<=self.height and i[1]<=self.width: 
                 if self.grid[i[0]][i[1]][0]!=' ':
                     self.collisionDetect(ele,self.grid[i[0]][i[1]][1])
                     break
                 
         j=0
-        for i in ele.position:
+        ele_symbol=ele.symbol()
+        for i in ele.position():
             if i[0] >=1 and i[1] >=1 and i[0]<=self.height and i[1]<=self.width: 
-                self.grid[i[0]][i[1]]=[ele.symbol[j],ele]
+                self.grid[i[0]][i[1]]=[ele_symbol[j],ele]
                 self.add=np.append(self.add,[i],axis=0)
             j=j+1
         return
 
     def removeObject(self,ele):
-        for i in ele.position:
+        for i in ele.position():
             if i[0] >=1 and i[1] >=1 and i[0]<=self.height and i[1]<=self.width: 
                 self.grid[i[0]][i[1]]=[' ',None]
                 self.delete=np.append(self.delete,[i],axis=0)
@@ -301,15 +302,15 @@ class Board:
                     self.writeObject(i,character)
                 for i in self.snowBalls:
                     self.removeObject(i)
-                    i.write(enemy.lives)
+                    i.write(enemy.lives())
                     self.writeObject(i,character)
                 for i in self.magnets:
                     self.removeObject(i)
                     i.write()
-                    if abs(i.position[2][0]-character.position[4][0])+abs(i.position[2][1]-character.position[4][1]) < distToMagnet[0]:
-                        distToMagnet[0]=abs(i.position[2][0]-character.position[4][0])+abs(i.position[2][1]-character.position[4][1])
-                        distToMagnet[1]=i.position[2][0]
-                        distToMagnet[2]=i.position[2][1]
+                    if abs(i.position20()-character.position40())+abs(i.position21()-character.position41()) < distToMagnet[0]:
+                        distToMagnet[0]=abs(i.position20()-character.position40())+abs(i.position21()-character.position41())
+                        distToMagnet[1]=i.position20()
+                        distToMagnet[2]=i.position21()
                     self.writeObject(i,character)
                 # update characeter
                 if distToMagnet[0]>10:
@@ -325,25 +326,25 @@ class Board:
                 
 
                 x=time.time()
-                if enemy.position[0][1]>self.width-20:
+                if enemy.position01()>self.width-20:
                     self.removeObject(enemy)
                     enemy.write_right()
                     self.writeObject(enemy,character)
-                    enemy.defense=1
+                    enemy.setdefense(1)
                 elif  x - enemy_time > 0.5:
-                    enemy.defense=0
+                    enemy.setdefense(0)
                     enemy_time=x
                     self.removeObject(enemy)
                     enemy.write_up_down()
-                    if character.position[3][0] >27:
-                        self.snowBalls.append(snowBall(27,enemy.position[0][1]-30))
-                    elif character.position[3][0]<3:
-                        self.snowBalls.append(snowBall(3,enemy.position[0][1]-30))
+                    if character.position30() >27:
+                        self.snowBalls.append(snowBall(27,enemy.position01()-30))
+                    elif character.position30()<3:
+                        self.snowBalls.append(snowBall(3,enemy.position01()-30))
                     else :
-                        self.snowBalls.append(snowBall(character.position[3][0],enemy.position[0][1]-30))
+                        self.snowBalls.append(snowBall(character.position30(),enemy.position01()-30))
                     self.writeObject(enemy,character)
 
-                if x-character.lastTime > 10 and x- character.liveLost > 3:
+                if x-character.lastTime() > 10 and x- character.liveLost() > 3:
                     character.deactivateShield()
                 if self.speed[2]==1 and x-self.speed[1] > 10:
                     self.speed[0]=0.1
@@ -351,13 +352,13 @@ class Board:
                 if 140-(x-y) < 0:
                     self.quitX()
 
-                print("\033[2;2HLive:"+str(character.lives)+"  ",end='')
+                print("\033[2;2HLive:"+str(character.lives())+"  ",end='')
                 print("\033[30;1H")
-                print("\033[2;10HScore:"+str(character.score)+"  ",end='')
+                print("\033[2;10HScore:"+str(character.score())+"  ",end='')
                 print("\033[30;1H")
-                print("\033[2;20HShield:"+str(int(x-character.lastTime))+"  ",end='')
+                print("\033[2;20HShield:"+str(int(x-character.lastTime()))+"  ",end='')
                 print("\033[30;1H")
-                print("\033[2;32HBoss:"+str(enemy.lives)+"  ",end='')
+                print("\033[2;32HBoss:"+str(enemy.lives())+"  ",end='')
                 print("\033[30;1H")
                 print("\033[2;42HTime Remaining:"+str(int(140-(x-y)))+"  ",end='')
                 print("\033[30;1H")

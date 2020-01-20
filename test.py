@@ -17,12 +17,17 @@
 # put_boss()
 # print()
 
-class coin:
-    def __init__(self):
-        self._name='hello'
-    def name(self):
-        return self._name
+# class coin:
+#     def __init__(self):
+#         self._name='hello'
+#     def name(self):
+#         return self._name
 
-coin1=coin()
-a=coin1.name()
-print(a)
+# coin1=coin()
+# a=coin1.name()
+# print(a)
+
+# def a(k):
+#     return k
+
+# print(a(2))
