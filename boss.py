@@ -17,7 +17,7 @@ class boss:
         
         self.position = np.array(list1)
         self.symbol = np.array(list2)
-    
+        self.defense=0
     def write_right(self):
         self.position[:,1]=self.position[:,1]-1
         return 

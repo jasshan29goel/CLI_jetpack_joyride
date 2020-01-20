@@ -1,10 +1,10 @@
-def check(ele):
-    b=list(a)
-    b=[3,4]
-    # b.extend([3,4])
-a=[1,2]
-check(a)
-print(a)
+# def check(ele):
+#     b=list(a)
+#     b=[3,4]
+#     # b.extend([3,4])
+# a=[1,2]
+# check(a)
+# print(a)
 
 # def put_boss():
 #     with open("./ascii_art/boss") as obj:
@@ -16,3 +16,13 @@ print(a)
 #             i+=1
 # put_boss()
 # print()
+
+class coin:
+    def __init__(self):
+        self._name='hello'
+    def name(self):
+        return self._name
+
+coin1=coin()
+a=coin1.name()
+print(a)

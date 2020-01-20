@@ -12,9 +12,11 @@ class boy:
         self.shield=0
         self.lastTime=time-70
         self.liveLost=-1
+        self.temp=1
     def up(self):
         if self.position[0][0]>=4:
             self.position[:,0]=self.position[:,0]-2
+            self.temp=1
     def left(self):
         if self.position[0][1]>=3:
             self.position[:,1]=self.position[:,1]-2
@@ -22,8 +24,11 @@ class boy:
         if self.position[0][1]<=self.width-4:
             self.position[:,1]=self.position[:,1]+2
     def down(self):
-        if self.position[0][0]<=self.height-4:
-            self.position[:,0]=self.position[:,0]+1
+        if self.position[0][0]<=self.height-3-int(self.temp):
+            self.position[:,0]=self.position[:,0]+int(self.temp)
+            self.temp+=0.3
+        else:
+            self.position[:,0]=self.position[:,0]+self.height-3-self.position[0][0]
     def towardsMagnet(self,n,m):
         if self.position[4][0]-n > 0 and self.position[0][0]>=4:
             self.position[:,0]=self.position[:,0]-2

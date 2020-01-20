@@ -96,22 +96,17 @@ class Board:
             ele2.vanish()
         if ele1.name=='bullet' and ele2.name=='enemy':
             self.removeObject(ele1)
-            if ele1.position[0][0]-10 == ele2.position[0][0] or ele1.position[0][0]-11 == ele2.position[0][0]:
-                for i in self.bullets:
-                    self.removeObject(i)
-                self.bullets=[]
+            if (ele1.position[0][0]-10 == ele2.position[0][0] or ele1.position[0][0]-11 == ele2.position[0][0]) and ele2.defense==0:
                 ele2.lives-=1
+                ele2.defense=1
                 if ele2.lives<=0 :
                     self.quitX()
             ele1.vanish()
         if ele1.name=='enemy' and ele2.name=='bullet':
             self.removeObject(ele2)
-            if ele2.position[0][0]-10 == ele1.position[0][0] or ele2.position[0][0]-11 == ele1.position[0][0]:
-                # for i in self.bullets:
-                #     self.removeObject(i)
-                # self.write()
-                # self.bullets=[]
+            if (ele2.position[0][0]-10 == ele1.position[0][0] or ele2.position[0][0]-11 == ele1.position[0][0])and ele1.defense==0:
                 ele1.lives-=1
+                ele1.defense=1
                 if ele1.lives<=0 :
                     self.quitX()
             ele2.vanish()
@@ -145,21 +140,6 @@ class Board:
             self.quitX()
         if ele1.name=='enemy' and ele2.name=='character':
             self.quitX()
-        # if ele1.name=='character' and ele2.name=='magnet':
-        #     self.removeObject(ele1)
-        #     ele1.lives-=1
-        #     ele1.restore()
-        #     if(ele1.lives<=0):
-        #         self.quitX()
-        # if ele1.name=='magnet' and ele2.name=='character':
-        #     self.removeObject(ele2)
-        #     ele2.lives-=1
-        #     ele2.restore()
-        #     if(ele2.lives<=0):
-        #         self.quitX()
-
-
-
 
         return
 
@@ -257,59 +237,26 @@ class Board:
         self.writeObject(enemy,character)
         
         for i in range(5):
-            self.beamsVertical.append(beamVertical(random.randint(2,22),random.randint(30,230)))
-            self.beamsVertical.append(beamVertical(random.randint(2,22),random.randint(230,430)))
-            self.beamsVertical.append(beamVertical(random.randint(2,22),random.randint(430,630)))
-            self.beamsVertical.append(beamVertical(random.randint(2,22),random.randint(630,830)))
-            self.beamsHorizontal.append(beamHorizontal(random.randint(2,26),random.randint(30,230)))
-            self.beamsHorizontal.append(beamHorizontal(random.randint(2,26),random.randint(230,430)))
-            self.beamsHorizontal.append(beamHorizontal(random.randint(2,26),random.randint(430,630)))
-            self.beamsHorizontal.append(beamHorizontal(random.randint(2,26),random.randint(630,830)))
-            self.beamsDiagnol.append(beamDiagnol(random.randint(2,22),random.randint(30,230)))
-            self.beamsDiagnol.append(beamDiagnol(random.randint(2,22),random.randint(230,430)))
-            self.beamsDiagnol.append(beamDiagnol(random.randint(2,22),random.randint(430,630)))
-            self.beamsDiagnol.append(beamDiagnol(random.randint(2,22),random.randint(630,830)))
+            self.beamsVertical.append(beamVertical(random.randint(2,25),random.randint(30,230)))
+            self.beamsVertical.append(beamVertical(random.randint(2,25),random.randint(230,430)))
+            self.beamsVertical.append(beamVertical(random.randint(2,25),random.randint(430,630)))
+            self.beamsVertical.append(beamVertical(random.randint(2,25),random.randint(630,830)))
+            self.beamsHorizontal.append(beamHorizontal(random.randint(2,29),random.randint(30,230)))
+            self.beamsHorizontal.append(beamHorizontal(random.randint(2,29),random.randint(230,430)))
+            self.beamsHorizontal.append(beamHorizontal(random.randint(2,29),random.randint(430,630)))
+            self.beamsHorizontal.append(beamHorizontal(random.randint(2,29),random.randint(630,830)))
+            self.beamsDiagnol.append(beamDiagnol(random.randint(2,25),random.randint(30,230)))
+            self.beamsDiagnol.append(beamDiagnol(random.randint(2,25),random.randint(230,430)))
+            self.beamsDiagnol.append(beamDiagnol(random.randint(2,25),random.randint(430,630)))
+            self.beamsDiagnol.append(beamDiagnol(random.randint(2,25),random.randint(630,830)))
             self.coins.append(coin(random.randint(2,28),random.randint(30,330)))
             self.coins.append(coin(random.randint(2,28),random.randint(330,530)))
             self.coins.append(coin(random.randint(2,28),random.randint(330,530)))
             self.coins.append(coin(random.randint(2,28),random.randint(330,530)))
             self.coins.append(coin(random.randint(2,28),random.randint(530,830)))
-            self.magnets.append(magnet(random.randint(2,26),random.randint(30,430)))                      
-            self.magnets.append(magnet(random.randint(2,26),random.randint(430,830)))          
-        # self.beamsVertical.extend([
-        #     beamVertical(2,100),
-        #     beamVertical(21,100),
-        #     beamVertical(4,240),
-        #     beamVertical(11,240),
-        #     beamVertical(18,240),
-        #     beamVertical(7,250),
-        #     beamVertical(15,250),
-        #     beamVertical(22,250),
-        #     beamVertical(4,260),
-        #     beamVertical(11,260),
-        #     beamVertical(18,260),
-        #     beamVertical(7,270),
-        #     beamVertical(15,270),
-        #     beamVertical(22,270)
-        # ])
-        # self.beamsHorizontal.extend([
-        #     beamHorizontal(10,70),
-        #     beamHorizontal(3,120),
-        #     beamHorizontal(8,240),
-        #     beamHorizontal(12,150),
-        #     beamHorizontal(15,40),
-        #     beamHorizontal(22,200),
-        #     beamHorizontal(26,190)
-        # ])
-        # self.beamsDiagnol.extend([
-        #     beamDiagnol(10,150),
-        #     beamDiagnol(20,150)
-        # ])
-        # self.coins.extend([
-        #     coin(28,30),
-        #     coin(25,190),
-        #     coin(5,190)
-        # ])
+            self.magnets.append(magnet(random.randint(2,29),random.randint(30,430)))                      
+            self.magnets.append(magnet(random.randint(2,29),random.randint(430,830)))          
+
 
         # wirte initial state
         for i in self.beamsVertical:
@@ -382,12 +329,14 @@ class Board:
                     self.removeObject(enemy)
                     enemy.write_right()
                     self.writeObject(enemy,character)
+                    enemy.defense=1
                 elif  x - enemy_time > 0.5:
+                    enemy.defense=0
                     enemy_time=x
                     self.removeObject(enemy)
                     enemy.write_up_down()
-                    if character.position[3][0] >24:
-                        self.snowBalls.append(snowBall(24,enemy.position[0][1]-30))
+                    if character.position[3][0] >27:
+                        self.snowBalls.append(snowBall(27,enemy.position[0][1]-30))
                     elif character.position[3][0]<3:
                         self.snowBalls.append(snowBall(3,enemy.position[0][1]-30))
                     else :
@@ -398,7 +347,6 @@ class Board:
                     character.deactivateShield()
                 if self.speed[2]==1 and x-self.speed[1] > 10:
                     self.speed[0]=0.1
-                
                 self.timeLeft=int(140-(x-y))
                 if 140-(x-y) < 0:
                     self.quitX()
