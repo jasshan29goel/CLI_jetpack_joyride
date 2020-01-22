@@ -102,34 +102,39 @@ game has been made.
 File structure
 --------------
 .
-├── alarmexception.py
-├── ascii_art
-│   ├── boss
-├── beam.py
-├── boss.py
-├── boy.py
-├── bullet.py
-├── coin.py
-├── done.txt
-├── game2.py
-├── game.py
-├── getChUnix.py
-├── magnet.py
-├── music
-│   ├── naruto.mp3
-│   ├── temp.mp3
-├── Readme.md
-├── snowBall.py
-├── temp
-└── test.py
++-- alarmexception.py
++-- ascii_art
+│   +-- boss
++-- images
+│   +-- gameplay.png     
+│   +-- shield.png     
+│   +-- boss.png     
+│   +-- bullet.png     
++-- beam.py
++-- boss.py
++-- boy.py
++-- bullet.py
++-- coin.py
++-- done.txt
++-- game2.py
++-- game.py
++-- getChUnix.py
++-- magnet.py
++-- music
+│   +-- naruto.mp3
+│   +-- temp.mp3
++-- Readme.md
++-- snowBall.py
++-- temp
+
 
 ScreenShots
 ------------
 
-![Alt text](/images/gameplay?raw=true "Basic Game Play")
-![Alt text](/images/shield?raw=true "Shield")
-![Alt text](/images/boss?raw=true "Boss")
-![Alt text](/images/bullet?raw=true "Boss")
+![Alt text](/images/gameplay.png?raw=true "Basic Game Play")
+![Alt text](/images/shield.png?raw=true "Shield")
+![Alt text](/images/boss.png?raw=true "Boss")
+![Alt text](/images/bullet.png?raw=true "Boss")
 
 
 Jasshan Goel
