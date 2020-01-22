@@ -11,7 +11,7 @@ class snowBall:
         self._symbol = np.array([' '])
         return  
     def write(self,k):
-        self._position[:,1]=self._position[:,1]-(6-k)
+        self._position[:,1]=self._position[:,1]-(5-k/4)
         return 
     def position(self):
         return self._position        

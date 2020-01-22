@@ -81,3 +81,5 @@ class boy:
         return self._position[4][0]
     def position41(self):
         return self._position[4][1]
+    lives = property(lives, setlives)
+    score = property(score, setscore)

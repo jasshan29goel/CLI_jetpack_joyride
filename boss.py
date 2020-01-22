@@ -2,7 +2,7 @@ import numpy as np
 class boss:
     def __init__(self,n,m):
         self._name='enemy'
-        self._lives=5
+        self._lives=19
         self._oscillate=1
         list1 =[]
         list2 =[]
@@ -10,9 +10,9 @@ class boss:
             i=0
             for line in obj:
                 for j in range(len(line)):
-                    if line[j] == '0':
+                    if line[j] != ' ' :
                         list1.append([i+n,j+m])
-                        list2.append('0')
+                        list2.append(line[j])
                 i+=1
         
         self._position = np.array(list1)
@@ -21,11 +21,13 @@ class boss:
     def write_right(self):
         self._position[:,1]=self._position[:,1]-1
         return 
-    def write_up_down(self):
-        if self._position[0][0]>=7:
+    def write_up_down(self,k):
+        if k>=15 and self._position[0][0]>=3:
             self._oscillate=-1
-        if self._position[0][0]<=2:
+        elif k<15 and self._position[0][0]<=6:
             self._oscillate=1
+        else:
+            self._oscillate=0
         self._position[:,0]=self._position[:,0]+self._oscillate
         return 
     def position(self):
@@ -46,3 +48,6 @@ class boss:
         return self._position[0][0]
     def position01(self):
         return self._position[0][1]
+
+    lives = property(lives, setlives)
+    defense = property(defense, setdefense)
