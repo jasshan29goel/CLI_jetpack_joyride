@@ -101,6 +101,7 @@ game has been made.
 ------------
 File structure
 --------------
+```
 .
 +-- alarmexception.py
 +-- ascii_art
@@ -126,6 +127,7 @@ File structure
 +-- Readme.md
 +-- snowBall.py
 +-- temp
+```
 
 
 ScreenShots
